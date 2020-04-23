@@ -1,0 +1,27 @@
+Get-PhysicalDisk | Select-Object FriendlyName, MediaType, Size
+
+<# New-VirtualDisk -FriendlyName "Data_Array" -UseMaximumSize -StoragePoolFriendlyName "Data_Pool" -ProvisioningType Fixed -ResiliencySettingName Parity -NumberOfColumns 4 -Interleave 262144
+
+
+ #>
+
+Get-StoragePool -FriendlyName "Data_Array" | Get-PhysicalDisk | ? MediaType -eq SSD | Set-PhysicalDisk -Usage Journal
+
+Get-StoragePool -FriendlyName "Data_Array" | Get-PhysicalDisk | ? MediaType -eq HDD
+New-StorageTier -FriendlyName "SSD_Tier" -StoragePoolFriendlyName "Data_Pool" -MediaType SSD
+
+New-StorageTier -FriendlyName HDD_Tier -StoragePoolFriendlyName "Data_Pool" -MediaType HDD
+New-VirtualDisk -FriendlyName "Data_Array" -UseMaximumSize -StoragePoolFriendlyName "Data_Pool" -ProvisioningType Fixed -ResiliencySettingName Parity -NumberOfColumns 4
+
+ -Interleave 262144
+
+
+ -WriteCacheSize 100GB
+
+
+
+New-VirtualDisk -FriendlyName "Media_Array" -UseMaximumSize -StoragePoolFriendlyName "Media_Pool" -ProvisioningType Fixed -ResiliencySettingName Parity -NumberOfColumns 4 -Interleave 262144
+
+
+
+
